@@ -1,8 +1,8 @@
 {
-  "name": "com.z3-studio.ngtp.ai-navigation",
+  "name": "com.z3.node-graph.ai-navigation",
   "displayName": "Z3 NGTP AI Navigation",
   "version": "0.1.0-alpha",
-  "description": "Node Graph Task Pack for AI Navigation",
+  "description": "Node Graph Task Pack for AI Navigation in Unity",
   "unity": "2021.3",
   "documentationUrl": "https://github.com/Z3-Studio/UTK-NGTP-AI-Navigation/blob/master/README.md",
   "changelogUrl": "https://github.com/Z3-Studio/UTK-NGTP-AI-Navigation/blob/master/CHANGELOG.md",
