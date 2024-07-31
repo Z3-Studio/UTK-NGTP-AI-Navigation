@@ -1,2 +1,2 @@
-# UTK NGTP Ai Navigation
- Node Graph Task Pack for Ai Navigation
+# UTK NGTP AI Navigation
+ Node Graph Task Pack for AI Navigation
