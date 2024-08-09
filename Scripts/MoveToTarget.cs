@@ -7,9 +7,11 @@ namespace Z3.NodeGraph.TaskPack.AiNavigation
 {
     [NodeCategory(Categories.AiNavigation)]
     [NodeDescription("TODO")]
-    public class MoveToTarget : ActionTask<NavMeshAgent>
+    public class MoveToTarget : ActionTask
     {
-        public Parameter<Vector3> target;
+        [ParameterDefinition(AutoBindType.SelfBind)]
+        [SerializeField] private Parameter<NavMeshAgent> data;
+        [SerializeField] private Parameter<Vector3> target;
 
         public override string Info => $"Move To {target}";
 
@@ -21,10 +23,10 @@ namespace Z3.NodeGraph.TaskPack.AiNavigation
 
         protected override void UpdateAction()
         {
-            Agent.destination = target.Value;
+            data.Value.destination = target.Value;
 
             // TODO: Review it. Create extension method Agent.ReachedDestination()
-            if (Vector3.Distance(Agent.destination, Agent.transform.position) < 0.1f)
+            if (Vector3.Distance(data.Value.destination, data.Value.transform.position) < 0.1f)
             {
                 EndAction();
             }

@@ -18,18 +18,20 @@ namespace Z3.NodeGraph.TaskPack.AiNavigation
 
     [NodeCategory(Categories.AiNavigation)]
     [NodeDescription("Set the parameters defined in IAstarAI")]
-    public class SetNavMeshAgentParameters : ActionTask<NavMeshAgent>
+    public class SetNavMeshAgentParameters : ActionTask
     {
-        public Parameter<AIPathParameters> aiPathParameters;
+        [ParameterDefinition(AutoBindType.SelfBind)]
+        [SerializeField] private Parameter<NavMeshAgent> data;
+        [SerializeField] private Parameter<AIPathParameters> aiPathParameters;
 
         public override string Info => $"NavAgent Parameters = {aiPathParameters}";
 
         protected override void StartAction()
         {
-            Agent.speed = aiPathParameters.Value.maxSpeed;
-            Agent.angularSpeed = aiPathParameters.Value.rotationSpeed;
+            data.Value.speed = aiPathParameters.Value.maxSpeed;
+            data.Value.angularSpeed = aiPathParameters.Value.rotationSpeed;
             //Agent.stoppingDistance = aiPathParameters.Value.slowdownDistance; Update?
-            Agent.stoppingDistance = aiPathParameters.Value.endReachedDistance;
+            data.Value.stoppingDistance = aiPathParameters.Value.endReachedDistance;
 
             EndAction();
         }

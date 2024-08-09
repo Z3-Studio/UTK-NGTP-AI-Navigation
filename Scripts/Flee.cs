@@ -7,10 +7,12 @@ namespace Z3.NodeGraph.TaskPack.AiNavigation
 {
     [NodeCategory(Categories.AiNavigation)]
     [NodeDescription("TODO")]
-    public class Flee : ActionTask<NavMeshAgent>
+    public class Flee : ActionTask
     {
-        public Parameter<Vector3> target;
-        public Parameter<float> escapeDistance;
+        [ParameterDefinition(AutoBindType.SelfBind)]
+        [SerializeField] private Parameter<NavMeshAgent> data;
+        [SerializeField] private Parameter<Vector3> target;
+        [SerializeField] private Parameter<float> escapeDistance;
 
         protected override void StartAction()
         {
@@ -20,10 +22,10 @@ namespace Z3.NodeGraph.TaskPack.AiNavigation
 
         protected override void UpdateAction()
         {
-            Vector3 oppositeDirection = (Agent.transform.position - target.Value).normalized * escapeDistance.Value;
-            Agent.destination = Agent.transform.position + oppositeDirection;
+            Vector3 oppositeDirection = (data.Value.transform.position - target.Value).normalized * escapeDistance.Value;
+            data.Value.destination = data.Value.transform.position + oppositeDirection;
 
-            if (Vector3.Distance(Agent.transform.position, target.Value) >= escapeDistance.Value)
+            if (Vector3.Distance(data.Value.transform.position, target.Value) >= escapeDistance.Value)
             {
                 EndAction();
             }
